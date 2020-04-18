@@ -71,10 +71,16 @@ def digitos(n):
     elif n<=9:
         return 1
 #Ejercicio 10
-
-def alreves(n):
-    if n<=9:
-        return n
+#aux,naux=0,0
+def alreves(n,aux,naux):
+    if n>9:
+        aux+=1
+        return alreves(n-10,aux,naux)
+    elif aux == 0:
+        return naux+n
+    else:
+        naux=(naux+n)*10
+        return alreves(aux,0,naux)
 
 #Ejercicio 11
 def mcd(n1,n2):
@@ -108,6 +114,14 @@ def raiz(n,x):
     else:
         return raiz(n,x+1)
 
+#Ejercicio 15
+
+def sucesion(num):
+    if(num == 1):
+        return 2
+    else:
+        return -3 * sucesion(num-1)
+
 #Ejercicio 16
 
 def barrido(vec):
@@ -127,11 +141,11 @@ def barrido_matriz(m, i, j):
         barrido_matriz(m,i,j+1)
 
 #Ejercicio 18
-def sucesion(n):
+def suc(n):
     if n==1:
         return 2
-    elif n>=2:
-        return n+1/sucesion(n-1)
+    else:
+        return n+1/suc(n-1)
 
 #Ejercicio 19
 i=0
