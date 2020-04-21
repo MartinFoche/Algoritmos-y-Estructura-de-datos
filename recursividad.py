@@ -41,12 +41,11 @@ def caracteres(sec):
 
 #Ejercicio6
 
-def fraccion(n,aux):
+def fraccion(n):
     if n ==1:
-        return aux
+        return n
     else:
-        aux+=1/n
-        return fraccion(n-1,aux)
+        return 1/n + fraccion(n-1)
 
 #Ejercicio 7
 def binario(n):
@@ -65,22 +64,18 @@ def logaritmo(base, numero):
 #Ejercicio 9
 
 def digitos(n):
-    if n>9:
-        n=n/10
-        return 1+digitos(n)
-    elif n<=9:
+    if n<=9:
         return 1
-#Ejercicio 10
-#aux,naux=0,0
-def alreves(n,aux,naux):
-    if n>9:
-        aux+=1
-        return alreves(n-10,aux,naux)
-    elif aux == 0:
-        return naux+n
     else:
-        naux=(naux+n)*10
-        return alreves(aux,0,naux)
+        return 1+digitos(n/10)
+        
+#Ejercicio 10
+
+def invertir(numero):
+    if(numero<10):
+        return numero
+    else:
+        return (numero % 10) * (10 ** (len(str(numero))-1)) + invertir(numero//10)
 
 #Ejercicio 11
 def mcd(n1,n2):
@@ -179,6 +174,22 @@ def contar_naves(vec):
             return 1 + contar_naves(vec[0:-1])
         else:
             return 0 + contar_naves(vec[0:-1])
+
+#Ejercicio 22:
+
+#Ejercicio 23:
+def torre_hanoi(n,agu1='1',agu2='2',agu3='3'):
+    if n > 0:
+        torre_hanoi(n-1,agu1,agu2,agu3)
+        print('Se mueve el disco ', n, " desde la torre ", agu1, " a la torre ", agu3)
+        torre_hanoi(n-1,agu3,agu1,agu2)
+
+#Ejercicio 24:
+def sucecion24(termino):
+    if(termino==1):
+        return 5.25
+    else:
+        return sucecion24(termino-1) * 4
 
 #Ejercicio 25
 def sucesion2(n):
