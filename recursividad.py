@@ -177,6 +177,48 @@ def contar_naves(vec):
 
 #Ejercicio 22:
 
+def buscar_salida(laberinto,fila,columna):
+
+    if columna != len(laberinto[fila])-1 and (laberinto[fila][columna+1] == 2) or fila != len(laberinto) and laberinto[fila+1][columna] == 2:
+        laberinto[fila][columna] = 3                       
+        return "win"
+
+    #COMPROBAR SI ENCUENTRA UN 0
+    elif fila < len(laberinto) and columna < len(laberinto[fila]):
+        if fila != len(laberinto)-1 and laberinto[fila+1][columna] == 0:
+            laberinto[fila][columna]= 3
+            return buscar_salida(laberinto,fila+1,columna) 
+
+        elif  columna != len(laberinto[fila])-1 and laberinto[fila][columna+1] == 0:
+            laberinto[fila][columna]= 3
+            return buscar_salida(laberinto,fila,columna+1)
+
+        elif fila != 0 and laberinto[fila-1][columna] == 0:
+            laberinto[fila][columna]= 3
+            return buscar_salida(laberinto,fila-1,columna)
+
+        elif columna != 0 and laberinto[fila][columna-1] == 0:
+            laberinto[fila][columna]= 3
+            return buscar_salida(laberinto,fila,columna-1)
+
+        #COMPROBAR POR LOS LUGARES QUE YA PASO 
+
+        elif fila != len(laberinto)-1 and laberinto[fila+1][columna] == 3:
+            laberinto[fila][columna]= 1
+            return buscar_salida(laberinto,fila+1,columna)
+        
+        elif columna != len(laberinto[fila])-1 and laberinto[fila][columna+1] == 3:
+            laberinto[fila][columna]= 1
+            return buscar_salida(laberinto,fila,columna+1)
+
+        elif fila != 0 and laberinto[fila-1][columna] == 3:
+            laberinto[fila][columna]= 1
+            return buscar_salida(laberinto,fila-1,columna)
+
+        elif columna != 0:
+            laberinto[fila][columna]= 1
+            return buscar_salida(laberinto,fila,columna-1)
+
 #Ejercicio 23:
 def torre_hanoi(n,agu1='1',agu2='2',agu3='3'):
     if n > 0:
